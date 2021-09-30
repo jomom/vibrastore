@@ -1,0 +1,56 @@
+<% include _layouts/header %>
+
+<!--  best way to buy -->
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 mt-2">
+                    <ul class="list-group">
+                        <li class="list-group-item fw-bold ">Browse Categories
+                           <a class="stretched-link"  data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"> <i class="fas fa-caret-down float-end"></i></a>
+                       </li>
+                       <div class="collapse dont-collapse-sm" id="collapseExample">
+                        <li class="list-group-item active ">
+                            All products
+                            <a class="stretched-link" href="/products"><i class="fa fa-shopping-cart"></i></a>
+                        </li>
+                         <% categories.forEach(function(c){ %>
+                        <li class="list-group-item">
+                            <%= c.title %>
+                            <a class="stretched-link" href="/products/<%= c.slug %>"></a>
+                        </li>
+                         <% }); %>
+                    </div>
+                </ul>
+            </div>
+            <div class="col-lg-9 col-sm-12 mt-2">
+              <div class="row">
+                 <% products.forEach(function(p){ %>
+                  <div class="col-6 col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
+                    <div class="card card-span h-100 text-white">
+                        <img class="img-fluid h-100" src="/product_images/<%= p.id %>/<%= p.image %>" alt="..." />
+                        <div class="card-img-overlay ps-0"> </div>
+                        <div class="card-body ps-0 bg-200">
+                          <p class="fw-bold text-1000 text-truncate mb-0"><%= p.title %></p>
+                          <p class="fw-light small mb-0">
+                              Apple 10.2" iPad 8th Generation (Cellular, 2020, 128GB) - Gold.
+                          </p>
+                          <div class="fw-bold column">
+                            <span class="text-800 me-auto text-end">KSH <%= parseFloat(p.price).toFixed(2) %></span>
+                            <span class="float-end">
+                                <a  type="button" class="btn btn-outline-primary btn-sm px-2" href="/cart/add/<%= p.slug %>">Add to cart 
+                                    <i class="fa fa-phone-square" aria-hidden="true"></i>
+                                </a>
+                            </span>
+                        </div>
+                    </div><a class="stretched-link" href="/products/<%= p.category %>/<%= p.slug %>"></a>
+                </div>
+            </div>
+            <% }); %>
+
+        </div>
+    </div>
+</div>
+</div>
+</section>
+<% include _layouts/footer %>
